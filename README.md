@@ -1,5 +1,6 @@
 # ints-jst v2.1.0
-The best. A javascript templating engine for HTML pages. A custom element has been used `<js-t>`.
+The best javascript library for dynamic HTML page generation. 
+Mind the use of custom element `<js-t>`.
 
 ### Example
 ```html

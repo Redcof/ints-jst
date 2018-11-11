@@ -84,6 +84,6 @@ You are requested to find more issue, and make it more complete.
 - `run()`
 - `print(...String)`
 - `log(...Any)`
-- `compile(DOMElement)`
+- `compile([DOMElement])` default is `body`
 
 

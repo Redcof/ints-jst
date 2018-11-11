@@ -55,13 +55,12 @@ The best. A javascript templating engine for HTML pages. A custom element has be
 </html>
 ```
 ### Output
-```
-* 0
-* 1
-* 2
-* 3
-* 4
 
-world
-```
+- 0
+- 1
+- 2
+- 3
+- 4
+<br/>world
+
 

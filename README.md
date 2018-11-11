@@ -2,6 +2,8 @@
 The best javascript library for dynamic HTML page generation. 
 Mind the use of custom element `<js-t>`.
 
+You are requested to find more issue, and make it more complete.
+
 ### Example
 ```html
 <!DOCTYPE html>

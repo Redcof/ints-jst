@@ -64,4 +64,17 @@ Mind the use of custom element `<js-t>`.
 - 4
 <br/>world
 
+### Syntax
+Javascript Symbols
+
+### GLOBALS
+- `___jst_element___`
+- `___NAME___`
+- `__VERSION___`
+- `___STG___`
+- `___CSTG___`
+- `run`
+- `print`
+- `log`
+
 

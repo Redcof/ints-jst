@@ -1,13 +1,20 @@
 "use strict";
 
+const ___NAME___ = "js-t";
+const __VERSION___ = "3.0.0";
+const ___STG___ = "<" + ___NAME___ + ">";
+const ___CSTG___ = "</" + ___NAME___ + ">";
+log("Ints JST v" + __VERSION___);
+
+let ___TGT___ = document;
+let ___EXE___ = '';
+
 function log() {
     let l = arguments.length;
     for (let c = 0; c < l; c++) {
         console.log(arguments[c]);
     }
 }
-
-let ___TGT___ = document;
 
 function print() {
     let l = arguments.length;
@@ -23,14 +30,19 @@ class ___jst_element___ extends HTMLElement {
     }
 }
 
-const ___NAME___ = "js-t";
-const __VERSION___ = "2.1.0";
-const ___STG___ = "<" + ___NAME___ + ">";
-const ___CSTG___ = "</" + ___NAME___ + ">";
-log("Ints JST v" + __VERSION___);
 customElements.define(___NAME___, ___jst_element___);
 
 function run() {
+    ___TGT___.innerHTML = '';
+    let execute = new Function(___EXE___);
+    let ret = execute();
+    ___TGT___.innerHTML = ___TGT___.innerText;
+    ___TGT___ = null;
+    ___EXE___ = null;
+    return ret;
+}
+
+function compile() {
     let target;
     if (arguments.length === 0) {
         target = document.getElementsByTagName('body')[0];
@@ -41,7 +53,7 @@ function run() {
     ___TGT___ = tgt;
     let html = (tgt.innerHTML).trim();
     let code_points = html.split(___STG___);
-    let execute = eval;
+
     let printable = '', executable = '', exe = '';
 
     function append_print(statement) {
@@ -67,10 +79,5 @@ function run() {
             append_print(printable);
         }
     }
-    tgt.innerHTML = '';
-    execute("(function(){" + executable + "}());");
-    tgt.innerHTML = tgt.innerText;
+    ___EXE___ = executable;
 }
-
-
-

@@ -1,4 +1,5 @@
-# ints-jst v2.1.0
+# ints-jst v3.0.0
+
 The best javascript library for dynamic HTML page generation. 
 Mind the use of custom element `<js-t>`.
 
@@ -11,7 +12,6 @@ You are requested to find more issue, and make it more complete.
 <head>
     <meta charset="UTF-8">
     <title>Ints js-t Test</title>
-    <!--<script src="jquery-3.3.1.min.js"></script>-->
     <script src="ints-jst.2.1.0.js"></script>
 </head>
 <body>
@@ -51,8 +51,10 @@ You are requested to find more issue, and make it more complete.
 </body>
 <script>
     window.onload = function () {
-        run(document.querySelectorAll('.test-1')[0]);
-        run(document.querySelectorAll('.test-2')[0]);
+        compile(document.querySelectorAll('.test-1')[0]);
+        run();
+        compile(document.querySelectorAll('.test-2')[0]);
+        run();
     }
 </script>
 </html>
@@ -67,7 +69,7 @@ You are requested to find more issue, and make it more complete.
 <br/>world
 
 ### Syntax
-Javascript Symbols
+`Javascript` Symbols & API
 
 ### GLOBALS
 - `___jst_element___`
@@ -75,8 +77,13 @@ Javascript Symbols
 - `__VERSION___`
 - `___STG___`
 - `___CSTG___`
-- `run`
-- `print`
-- `log`
+- `___TGT___`
+- `___EXE___`
+
+### API
+- `run()`
+- `print(...String)`
+- `log(...Any)`
+- `compile(DOMElement)`
 
 

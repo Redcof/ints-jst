@@ -3,13 +3,13 @@
 var ___NAME___ = "js-t";
 var __VERSION___ = "3.1.0";
 var ___STG___ = "<" + ___NAME___ + ">";
-var ___CSTG___ = "</" + ___NAME___ + ">";
-log("Ints JST v" + __VERSION___);
+var ___CTG___ = "</" + ___NAME___ + ">";
+jst_log("Ints JST v" + __VERSION___);
 
 var ___TGT___ = document;
 var ___EXE___ = '';
 
-function log() {
+function jst_log() {
     var l = arguments.length;
     for (var c = 0; c < l; c++) {
         console.log(arguments[c]);
@@ -71,7 +71,7 @@ function compile() {
     for (cp_ctr = 1; cp_ctr < cp_len; cp_ctr++) {
         var codes = code_points[cp_ctr];
         codes = codes.trim();
-        var parts = codes.split(___CSTG___);
+        var parts = codes.split(___CTG___);
         //part 0 contains executable codes
         exe = parts[0].trim();
         exe = exe.replace(/[\n\r]{1,}/g, " ");

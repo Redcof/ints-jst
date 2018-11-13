@@ -1,7 +1,7 @@
 # ints-jst v3.1.0
 
 The best javascript library for dynamic HTML page generation. 
-Mind the use of custom element `<js-t>`.
+Mind the use of custom element `<js-t>` and `{{expression}}`inside element attribute.
 
 You are requested to find more issue, and make it more complete.
 
@@ -139,8 +139,138 @@ You are requested to find more issue, and make it more complete.
 </script>
 </html>
 ```
-### Output
+
+### Source Output
+```html
+<html lang="en" class="gr__localhost"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ints js-t Test</title>
+    <script src="ints-jst.js"></script>
+    <style>
+        /** <js-t> table CSS support  */
+        .table {
+            display: table;
+            width: 100%;
+        }
+
+        .thead {
+            display: table-row-group;
+        }
+
+        .th {
+            display: table-cell;
+            font-weight: bold;
+        }
+
+        .tbody {
+            display: table-row-group;
+        }
+
+        .tr {
+            display: table-row;
+        }
+
+        .td {
+            display: table-cell;
+        }
+    </style>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        code{
+            font-family: monospace;
+        }
+        h2{
+            padding: 15px 0 20px 0;
+            display: block;
+        }
+    </style>
+    <script>
+        var column = ["ID", "First Name", "Last Name", "Address", "Phone"];
+        var rows = [
+            ["Soumen", "Sardar", "South 24 Pgs., WB", "234456"],
+            ["Taniya", "Paul", "Howrah., WB", "9889"],
+            ["Mac", "Bee", "Hopler, UK", "34223"],
+            ["Lorem", "Ipsum", "Autiop, USA", "234456"],
+        ];
+
+    </script>
+</head>
+<body>
+<h2>Table Example with <code>for()</code>loop:</h2>
+<div class="table" id="table-1">
+    <div class="table" id="table-1"> 
+        <div class="tr">
+            <div class="th">ID</div>
+            <div class="th">First Name</div>
+            <div class="th">Last Name</div>
+            <div class="th">Address</div>
+            <div class="th">Phone</div>
+        </div>
+        <div class="tr"> 
+            <div class="td" data-id="1" data-ctr="0" style="font-size: 30px; color: blueviolet">1. </div>
+            <div class="td">Soumen</div>
+            <div class="td">Sardar</div>
+            <div class="td">South 24 Pgs., WB</div>
+            <div class="td">234456</div>
+        </div>
+        <div class="tr"> 
+            <div class="td" data-id="2" data-ctr="1" style="font-size: 30px; color: blueviolet">2. </div>
+            <div class="td">Taniya</div>
+            <div class="td">Paul</div>
+            <div class="td">Howrah., WB</div>
+            <div class="td">9889</div>
+        </div>
+        <div class="tr"> 
+            <div class="td" data-id="3" data-ctr="2" style="font-size: 30px; color: blueviolet">3. </div>
+            <div class="td">Mac</div>
+            <div class="td">Bee</div>
+            <div class="td">Hopler, UK</div>
+            <div class="td">34223</div>
+        </div>
+        <div class="tr"> 
+            <div class="td" data-id="4" data-ctr="3" style="font-size: 30px; color: blueviolet">4. </div>
+            <div class="td">Lorem</div>
+            <div class="td">Ipsum</div>
+            <div class="td">Autiop, USA</div>
+            <div class="td">234456</div>
+        </div>
+    </div>
+</div>
+<h2>List Example with <code>for()</code>loop:</h2>
+<div class="test-1">
+    <ul>
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</div>
+    </div>
+<h2><code>if()</code> Statement: </h2>
+<div class="test-2">
+    <div class="test-2">world</div>
+</div>
+<script>
+    window.onload = function () {
+        compile(document.querySelectorAll('.test-1')[0]);
+        run();
+        compile(document.querySelectorAll('#table-1')[0]);
+        run();
+        compile(document.querySelectorAll('.test-2')[0]);
+        run();
+    }
+</script>
+</body></html>
+```
+
+### Browser Output
 ![Image of output](https://github.com/Redcof/ints-jst/blob/master/o310.png)
+
 ### Syntax
 `Javascript` Symbols & API
 

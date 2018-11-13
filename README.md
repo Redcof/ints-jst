@@ -60,14 +60,7 @@ You are requested to find more issue, and make it more complete.
 </html>
 ```
 ### Output
-
-- 0
-- 1
-- 2
-- 3
-- 4
-<br/>world
-
+![Image of output](https://github.com/Redcof/ints-jst/blob/master/o310.png)
 ### Syntax
 `Javascript` Symbols & API
 
@@ -76,14 +69,14 @@ You are requested to find more issue, and make it more complete.
 - `___NAME___`
 - `__VERSION___`
 - `___STG___`
-- `___CSTG___`
+- `___CTG___`
 - `___TGT___`
 - `___EXE___`
 
 ### API
 - `run()`
 - `print(...String)`
-- `log(...Any)`
+- `jst_log(...Any)`
 - `compile([DOMElement])` default is `body`
 
 

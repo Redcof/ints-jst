@@ -1,7 +1,7 @@
 "use strict";
 
 var ___NAME___ = "js-t";
-var __VERSION___ = "3.0.2";
+var __VERSION___ = "3.1.0";
 var ___STG___ = "<" + ___NAME___ + ">";
 var ___CSTG___ = "</" + ___NAME___ + ">";
 log("Ints JST v" + __VERSION___);
@@ -51,7 +51,7 @@ function compile() {
     }
     var tgt = target;
     ___TGT___ = tgt;
-    var html = (tgt.innerHTML).trim();
+    var html = (tgt.outerHTML).trim();
     var code_points = html.split(___STG___);
 
     var prnt = '', executable = '', exe = '';
@@ -59,7 +59,9 @@ function compile() {
     function append_print(statement) {
         statement = statement.replace(/[\s]{2,}/g, " ");
         statement = statement.replace(/[\n\r]{1,}/g, "\\n");
-        executable += "print('" + statement + "');";
+        if (statement.trim() !== '') {
+            executable += "print('" + statement + "');";
+        }
     }
 
     prnt = code_points[0].trim();
@@ -70,22 +72,31 @@ function compile() {
         var codes = code_points[cp_ctr];
         codes = codes.trim();
         var parts = codes.split(___CSTG___);
+        //part 0 contains executable codes
         exe = parts[0].trim();
         exe = exe.replace(/[\n\r]{1,}/g, " ");
         exe = exe.replace(/&gt;/g, ">");
         exe = exe.replace(/&lt;/g, "<");
         executable += exe;
+
         if (parts.length > 1 && parts[1].trim().length > 0) {
+            //part - 1 can contain expression or printable.
             prnt = parts[1].trim();
-            prnt = prnt.replace(/'/g, "\\'");
-            prnt = prnt.replace(/'/g, "\\'");
-            var prnt_prts = prnt.match(/{{(?<exprsn>.*)}}/g);
-            if (prnt_prts) {
-                prnt_prts.forEach(function (items) {
-                    log(items);
-                })
+            prnt = prnt.replace(/'/g, "\\'");// escape single-quote
+            var regex = /{{(?<expression>[\(\)\w\+\-=\*%\!\<\>\|~\s]*)}}/g;
+            var print_parts = regex[Symbol.split](prnt);
+            var len = print_parts.length;
+            if (len > 1) {
+                for (var btr = 0; btr < len; btr += 2) {
+                    append_print(print_parts[btr]);
+                    if (btr + 1 < len) {
+                        executable += "print(" + print_parts[btr + 1] + ");";
+                    }
+                }
             }
-            append_print(prnt);
+            else {
+                append_print(prnt);
+            }
         }
     }
     ___EXE___ = executable;

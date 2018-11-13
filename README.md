@@ -1,11 +1,17 @@
 # ints-jst v3.1.0
 
-The best javascript library for dynamic HTML page generation. 
+The best javascript library and templeting engine for dynamic HTML page generation. 
 Mind the use of custom element `<js-t>` and `{{expression}}`inside element attribute.
 
 You are requested to find more issue, and make it more complete.
+# Why this library?
+Check this link and decide why 
+https://codecondo.com/15-javascript-template-engines/
+
+`compile()` and `run()` a part of your DOM or left blank to be treated implecitely.
 
 ### Example
+A complete example with API usages.
 ```html
 <!DOCTYPE html>
 <html lang="en">

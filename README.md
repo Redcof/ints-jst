@@ -9,7 +9,28 @@ You are requested to find more issue, and make it more complete.
 Check this link and decide why 
 https://codecondo.com/15-javascript-template-engines/
 
-`compile()` and `run()` a part of your DOM or left blank to be treated implecitely.
+### Use
+`compile()` the whole body at once or `compile()` a specific part of the page by specifing the `DOMElement` referance as `argument` and then call `run()`. This a one time operation.
+
+```javascript
+<script>
+   compile();
+   run();
+</script>
+```
+```javascript
+<script>
+   var element = document.getElementById('my-div');
+   compile(element);
+   run();
+   
+   var element2 = document.getElementById('article-2');
+   compile(element2);
+   run();
+</script>
+```
+ 
+
 
 ### Example
 A complete example with API usages.

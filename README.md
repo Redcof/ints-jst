@@ -3,8 +3,7 @@
 The best javascript library and templeting engine for dynamic HTML page generation. 
 
 Mind the use of custom element `<js-t>` and `{{expression}}`inside element attribute.
-
-You are requested to find more issue, and make it more complete.
+You are requested to find more issue, and make it more complete. Suggest improvements and ideas!
 # Why this library?
 Check this link and decide why 
 https://codecondo.com/15-javascript-template-engines/

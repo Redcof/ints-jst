@@ -1,7 +1,7 @@
 "use strict";
 
 var ___NAME___ = "js-t";
-var __VERSION___ = "3.1.0";
+var __VERSION___ = "3.1.1";
 var ___STG___ = "<" + ___NAME___ + ">";
 var ___CTG___ = "</" + ___NAME___ + ">";
 jst_log("Ints JST v" + __VERSION___);
@@ -51,7 +51,7 @@ function compile() {
     }
     var tgt = target;
     ___TGT___ = tgt;
-    var html = (tgt.outerHTML).trim();
+    var html = (tgt.innerHTML).trim();
     var code_points = html.split(___STG___);
 
     var prnt = '', executable = '', exe = '';
@@ -83,7 +83,7 @@ function compile() {
             //part - 1 can contain expression or printable.
             prnt = parts[1].trim();
             prnt = prnt.replace(/'/g, "\\'");// escape single-quote
-            var regex = /{{(?<expression>[\(\)\w\+\-=\*%\!\<\>\|~\s]*)}}/g;
+            var regex = /{{(?<expression>[\[\]\(\)\<\>\+\-\*/=%\!\|~\&\.:\?\w\s]*)}}/g;
             var print_parts = regex[Symbol.split](prnt);
             var len = print_parts.length;
             if (len > 1) {

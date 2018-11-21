@@ -1,4 +1,4 @@
-# ints-jst v3.1.1
+# ints-jst v3.2.0
 
 #### Add the power of programming to HTML.
 
@@ -11,7 +11,7 @@ Check this link and decide why
 https://codecondo.com/15-javascript-template-engines/
 
 ### Use
-`compile()` the whole body at once or `compile()` a specific part of the page by specifing the `DOMElement` referance as `argument` and then call `run()`. This a one time operation.
+`compile()` the whole body at once or `compile()` a specific part of the page by specifing the `DOMElement` referance as `argument` and then call `run()`. Compile and run code many time.
 
 ```javascript
 <script>

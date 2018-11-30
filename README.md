@@ -1,4 +1,4 @@
-# ints-jst v3.2.1
+# ints-jst v3.2.2
 
 #### Add the power of programming to HTML.
 

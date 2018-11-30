@@ -1,7 +1,7 @@
 "use strict";
 
 var ___NAME___ = "js-t";
-var __VERSION___ = "3.2.1";
+var __VERSION___ = "3.2.2";
 var ___STG___ = "<" + ___NAME___ + ">";
 var ___CTG___ = "</" + ___NAME___ + ">";
 jst_log("Ints JST v" + __VERSION___);
@@ -33,12 +33,12 @@ class ___jst_element___ extends HTMLElement {
 customElements.define(___NAME___, ___jst_element___);
 
 function run() {
-    var source = ___TGT___.querySelectorAll('script')[0].innerHTML;
+    var source = ___TGT___.querySelectorAll('script[type=jst]')[0].innerHTML;
     ___TGT___.innerHTML = '';
     var execute = new Function(___EXE___);
     var ret = execute();
     ___TGT___.innerHTML = ___TGT___.innerText;
-    ___TGT___.innerHTML += "<script style='display:none;'>" + source + "</script>";
+    ___TGT___.innerHTML += "<script style='display:none;' type='jst'>" + source + "</script>";
     ___TGT___.style.display = '';
     ___TGT___ = null;
     ___EXE___ = null;
@@ -57,12 +57,12 @@ function compile() {
     ___TGT___.style.display = 'none';
 
     //backup the source code if required
-    var source = ___TGT___.querySelectorAll('script');
+    var source = ___TGT___.querySelectorAll('script[type=jst]');
     var html;
     if (source.length === 0) {
         //get the source code
         html = (tgt.innerHTML).trim();
-        ___TGT___.innerHTML += "<script style='display:none;'>" + html + "</script>";
+        ___TGT___.innerHTML += "<script style='display:none;' type='jst'>" + html + "</script>";
     } else {
         html = (source[0].innerHTML).trim();
     }

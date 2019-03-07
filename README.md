@@ -92,6 +92,13 @@ A complete example with API usages.
             ["Mac", "Bee", "Hopler, UK", "34223"],
             ["Lorem", "Ipsum", "Autiop, USA", "234456"],
         ];
+       
+       var town_list = [
+          {'name':  'South 24 Paragans', 'id' : 12},
+          {'name':  'Howrah', 'id' : 11},
+          {'name':  'Kolkata', 'id' : 13},
+          {'name':  'Hoogli', 'id' : 25},
+       ];
 
     </script>
 </head>
@@ -154,7 +161,9 @@ A complete example with API usages.
         }
     </js-t>
 </div>
-
+<select name="select" jst-populate="{src:town_list,lbl:'name',val:'id'}" jst-selected="11">
+   <option value="0">--Select Town--</option>
+</select>
 </body>
 <script>
     window.onload = function () {
@@ -284,6 +293,13 @@ A complete example with API usages.
 <div class="test-2">
     <div class="test-2">world</div>
 </div>
+<select name="select" jst-populate="{src:town_list,lbl:'name',val:'id'}" jst-selected="11">
+   <option value="0">--Select Town--</option>
+   <option value="12">South 24 Paragans</option>
+   <option value="11" selected='selected'>Howrah</option>
+   <option value="13">Kolkata</option>
+   <option value="25">Hoogli</option>      
+</select>
 <script>
     window.onload = function () {
         compile(document.querySelectorAll('.test-1')[0]);
@@ -294,7 +310,8 @@ A complete example with API usages.
         run();
     }
 </script>
-</body></html>
+</body>
+</html>
 ```
 
 ### Browser Output

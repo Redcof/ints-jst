@@ -1,3 +1,20 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @Redcof Sign out
+1
+1 0 Redcof/ints-jst
+ Code  Issues 4  Pull requests 0  Projects 0  Wiki  Insights  Settings
+ints-jst/ints-jst.js
+@Redcof Redcof Update ints-jst.js
+8cfc638  an hour ago
+185 lines (158 sloc)  5.64 KB
+    
 "use strict";
 
 var ___NAME___ = "js-t";
@@ -182,3 +199,16 @@ function compile() {
 }
 
 document.querySelectorAll('head')[0].innerHTML += "<style> js-t{display:none;} </style>";
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Redcof closed this just now

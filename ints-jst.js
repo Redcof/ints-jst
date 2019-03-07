@@ -1,7 +1,7 @@
 "use strict";
 
 var ___NAME___ = "js-t";
-var __VERSION___ = "3.5.2";
+var __VERSION___ = "3.8.0";
 var ___STG___ = "<" + ___NAME___ + ">";
 var ___CTG___ = "</" + ___NAME___ + ">";
 jst_log("Ints JST v" + __VERSION___);
@@ -35,19 +35,24 @@ customElements.define(___NAME___, ___jst_element___);
 function run() {
     var source = ___TGT___.querySelectorAll('script[type=jst]')[0].innerHTML;
     ___TGT___.innerHTML = '';
-    //console.warn(___EXE___);
-    var execute = new Function(___EXE___);
-    var ret = execute();
-    ___TGT___.innerHTML = ___TGT___.innerText;
-    ___TGT___.innerHTML += "<script style='display:none;' type='jst'>" + source + "</script>";
-    ___TGT___.style.display = '';
 
-    /** select box operation */
-    select_box_processing();
+    try {
+        var execute = new Function(___EXE___);
+        var ret = execute();
+        ___TGT___.innerHTML = ___TGT___.innerText;
+        ___TGT___.innerHTML += "<script style='display:none;' type='jst'>" + source + "</script>";
+        ___TGT___.style.display = '';
 
-    ___TGT___ = null;
-    ___EXE___ = null;
-    return ret;
+        /** select box operation */
+        select_box_processing();
+
+        ___TGT___ = null;
+        ___EXE___ = null;
+        return ret;
+    } catch (e) {
+        console.error(e.message);
+        console.log(___EXE___);
+    }
 }
 
 function prepare_select() {
@@ -58,17 +63,18 @@ function prepare_select() {
         var select = select_boxes[ctr];
         var population_option_str = select.getAttribute('jst-populate');
         // var components = population_option_str.match(regex).groups;
-        var components = eval('(' + population_option_str + ')');
         try {
+            var components = eval('(' + population_option_str + ')');
             // var population_option = window[components.src];
-            var population_option = components.src;
+            var population_option = Object.values(components.src);
             var value_key = components.val;
             var label_key = components.lbl;
             for (var ctr_o = 0; ctr_o < population_option.length; ctr_o++) {
                 $(select).append('<option value="' + population_option[ctr_o][value_key] + '">' + population_option[ctr_o][label_key] + '</option>');
             }
         } catch (e) {
-            console.error("jst-populate must contain 'src', 'val', 'lbl' ", select);
+            console.error("jst-populate must contain 'src', 'val', 'lbl', where 'val' & 'lbl' are string", select);
+            console.error(e);
         }
     }
 }
@@ -125,10 +131,11 @@ function compile() {
     var prnt = '', executable = '', exe = '';
 
     function filter(str) {
-        str = str.replace(/[\s]{2,}/g, " ");
-        str = str.replace(/[\n\r]{1,}/g, "\\n");
-        str = str.replace(/&lt;/g, "<");
-        str = str.replace(/&gt;/g, ">");
+        str = str.replace(/[\s]{2,}/g, " "); // replace space
+        str = str.replace(/[\n\r]{1,}/g, "\\n"); // replace line feed
+        str = str.replace(/&lt;/g, "<"); // replace <
+        str = str.replace(/&gt;/g, ">"); // replace >
+        str = str.replace(/'/g, "\\'");// escape single-quote
         return str;
     }
 

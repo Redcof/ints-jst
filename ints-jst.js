@@ -1,7 +1,7 @@
 "use strict";
 
 var ___NAME___ = "js-t";
-var __VERSION___ = "3.2.2";
+var __VERSION___ = "3.5.2";
 var ___STG___ = "<" + ___NAME___ + ">";
 var ___CTG___ = "</" + ___NAME___ + ">";
 jst_log("Ints JST v" + __VERSION___);
@@ -35,14 +35,67 @@ customElements.define(___NAME___, ___jst_element___);
 function run() {
     var source = ___TGT___.querySelectorAll('script[type=jst]')[0].innerHTML;
     ___TGT___.innerHTML = '';
+    //console.warn(___EXE___);
     var execute = new Function(___EXE___);
     var ret = execute();
     ___TGT___.innerHTML = ___TGT___.innerText;
     ___TGT___.innerHTML += "<script style='display:none;' type='jst'>" + source + "</script>";
     ___TGT___.style.display = '';
+
+    /** select box operation */
+    select_box_processing();
+
     ___TGT___ = null;
     ___EXE___ = null;
     return ret;
+}
+
+function prepare_select() {
+    /** select box preparation */
+    var select_boxes = ___TGT___.querySelectorAll('select[jst-populate]');
+    var ctr = 0, len = select_boxes.length;
+    for (ctr = 0; ctr < len; ctr++) {
+        var select = select_boxes[ctr];
+        var population_option_str = select.getAttribute('jst-populate');
+        // var components = population_option_str.match(regex).groups;
+        var components = eval('(' + population_option_str + ')');
+        try {
+            // var population_option = window[components.src];
+            var population_option = components.src;
+            var value_key = components.val;
+            var label_key = components.lbl;
+            for (var ctr_o = 0; ctr_o < population_option.length; ctr_o++) {
+                $(select).append('<option value="' + population_option[ctr_o][value_key] + '">' + population_option[ctr_o][label_key] + '</option>');
+            }
+        } catch (e) {
+            console.error("jst-populate must contain 'src', 'val', 'lbl' ", select);
+        }
+    }
+}
+
+function select_box_processing() {
+
+    /** select box preparation */
+    prepare_select();
+
+    /** select box operation */
+    var select_boxes = ___TGT___.querySelectorAll('select[jst-selected]');
+    var ctr = 0, len = select_boxes.length;
+    for (ctr = 0; ctr < len; ctr++) {
+        var select = select_boxes[ctr];
+        var val = select.getAttribute('jst-selected');
+        var option = select.querySelectorAll('option');
+        var o_len = option.length;
+        if (o_len) {
+            for (var o_ctr = 0; o_ctr < o_len; o_ctr++) {
+                if (option[o_ctr].getAttribute('value') + "" === val + "") {
+                    option[o_ctr].setAttribute('selected', 'selected');
+                    break;
+                }
+            }
+
+        }
+    }
 }
 
 function compile() {
@@ -71,9 +124,16 @@ function compile() {
 
     var prnt = '', executable = '', exe = '';
 
+    function filter(str) {
+        str = str.replace(/[\s]{2,}/g, " ");
+        str = str.replace(/[\n\r]{1,}/g, "\\n");
+        str = str.replace(/&lt;/g, "<");
+        str = str.replace(/&gt;/g, ">");
+        return str;
+    }
+
     function append_print(statement) {
-        statement = statement.replace(/[\s]{2,}/g, " ");
-        statement = statement.replace(/[\n\r]{1,}/g, "\\n");
+        statement = filter(statement);
         if (statement.trim() !== '') {
             executable += "print('" + statement + "');";
         }
@@ -89,17 +149,15 @@ function compile() {
         var parts = codes.split(___CTG___);
         //part 0 contains executable codes
         exe = parts[0].trim();
-        exe = exe.replace(/[\n\r]{1,}/g, " ");
-        exe = exe.replace(/&gt;/g, ">");
-        exe = exe.replace(/&lt;/g, "<");
+        exe = filter(exe);
         executable += exe;
 
         if (parts.length > 1 && parts[1].trim().length > 0) {
             //part - 1 can contain expression or printable.
             prnt = parts[1].trim();
             prnt = prnt.replace(/'/g, "\\'");// escape single-quote
-            var regex = /{{(?<expression>[\[\]\(\)\<\>\+\-\*/=%\!\|~\&\.:\?\w\s]*)}}/g;
-            var print_parts = regex[Symbol.split](prnt);
+            var regex = /{{(?<expression>[\[\]()<>+\-*/=%!|~&.:?\w\s]*)}}/g;
+            var print_parts = prnt.split(regex);
             var len = print_parts.length;
             if (len > 1) {
                 for (var btr = 0; btr < len; btr += 2) {
@@ -108,11 +166,12 @@ function compile() {
                         executable += "print(" + print_parts[btr + 1] + ");";
                     }
                 }
-            }
-            else {
+            } else {
                 append_print(prnt);
             }
         }
     }
     ___EXE___ = executable;
 }
+
+document.querySelectorAll('head')[0].innerHTML += "<style> js-t{display:none;} </style>";

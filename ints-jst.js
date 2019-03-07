@@ -1,24 +1,7 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- @Redcof Sign out
-1
-1 0 Redcof/ints-jst
- Code  Issues 4  Pull requests 0  Projects 0  Wiki  Insights  Settings
-ints-jst/ints-jst.js
-@Redcof Redcof Update ints-jst.js
-8cfc638  an hour ago
-185 lines (158 sloc)  5.64 KB
-    
 "use strict";
 
 var ___NAME___ = "js-t";
-var __VERSION___ = "3.8.0";
+var __VERSION___ = "3.9.0";
 var ___STG___ = "<" + ___NAME___ + ">";
 var ___CTG___ = "</" + ___NAME___ + ">";
 jst_log("Ints JST v" + __VERSION___);
@@ -102,7 +85,7 @@ function select_box_processing() {
     prepare_select();
 
     /** select box operation */
-    var select_boxes = ___TGT___.querySelectorAll('select[jst-selected]');
+    var select_boxes = ___TGT___.querySelectorAll('select[jst-populate]');
     var ctr = 0, len = select_boxes.length;
     for (ctr = 0; ctr < len; ctr++) {
         var select = select_boxes[ctr];
@@ -134,7 +117,7 @@ function compile() {
 
     //backup the source code if required
     var source = ___TGT___.querySelectorAll('script[type=jst]');
-    var html;
+    var html = (tgt.innerHTML).trim();
     if (source.length === 0) {
         //get the source code
         html = (tgt.innerHTML).trim();
@@ -199,16 +182,3 @@ function compile() {
 }
 
 document.querySelectorAll('head')[0].innerHTML += "<style> js-t{display:none;} </style>";
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Redcof closed this just now

@@ -1,8 +1,11 @@
 "use strict";
 // sample check
 
-function add_no(a, b) {
-      return a + b;
+function print_string(string){
+    return string;
+}
+function add_n(a, b){
+    return a+b;
 }
 var ___NAME___ = "js-t";
 var __VERSION___ = "3.9.0";

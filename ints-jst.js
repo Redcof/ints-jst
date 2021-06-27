@@ -2,14 +2,15 @@
 // sample check
 
 function print_string(string){
-    return string;
+    jst_log(string)
 }
-function print_key(key){
-    return key;
+function print_key(key) {
+   jst_log(key)
+   return key
 }
 
 function add_n(a, b){
-    return a+b;
+    return a+b
 }
 var ___NAME___ = "js-t";
 var __VERSION___ = "3.9.0";
